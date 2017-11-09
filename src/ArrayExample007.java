@@ -42,28 +42,20 @@ public class ArrayExample007 {  // begin class
     	//ConsoleReader console = new ConsoleReader(System.in);
     	//DecimalFormat df1 = new DecimalFormat("$##.00");
     	
-    	//BufferedReader fin = new BufferedReader(new FileReader("name of file"));
+        try{
+    	BufferedReader fin = new BufferedReader(new FileReader("arrayData.xt"));
+        } // end try
+        catch(FileNotFoundException e){
+            JOptionPane.showMessageDialog(null,"file not found");
+        } // end catch
+        
     	PrintWriter fout = new PrintWriter(new BufferedWriter(new FileWriter("testOut.txt")));
     	
     // ********** Print output Banner **********
     
-    	System.out.println("*******************************************");
-    	System.out.println("Name:		your name here");
-    	System.out.println("Class:		CS20S");
-    	System.out.println("Assignment:	Ax Qy");
-    	System.out.println("*******************************************");
-
-    	bannerOut = "*******************************************\n";
-    	bannerOut += "Name:		your name here\n";
-    	bannerOut += "Class:		CS20S\n";
-    	bannerOut += "Assignment:	Ax Qy\n";
-    	bannerOut += "*******************************************\n\n";
-    	
-    	fout.println("*******************************************");
-    	fout.println("Name:		your name here");
-    	fout.println("Class:		CS20S");
-    	fout.println("Assignment:	Ax Qy");
-    	fout.println("*******************************************");
+        printBanner();
+        fileBanner(fout);
+        bannerOut = windowBanner();
  	    	
     // ************************ get input **********************
 
@@ -97,4 +89,54 @@ public class ArrayExample007 {  // begin class
         //fin.close();			// close input buffer
         fout.close();			// close output buffer
     }  // end main
+    
+   //************************************************
+    // Purpose: print an output banner to the output window
+    // Interface: IN: none
+    // Returns: none
+    // *****************************************************
+    public static void printBanner(){
+        System.out.println("*******************************************");
+        System.out.println("Name:		your name here");
+        System.out.println("Class:		CS20S");
+        System.out.println("Assignment:	Ax Qy");
+        System.out.println("*******************************************");
+    }  // end print banner
+    
+    //************************************************
+    // Purpose: print an output banner to the output file
+    // Interface: IN: PrintWriter
+    // Returns: none
+    // *****************************************************
+    public static void fileBanner(PrintWriter fo){
+        fo.println("*******************************************");
+        fo.println("Name:		your name here");
+        fo.println("Class:		CS20S");
+        fo.println("Assignment:	Ax Qy");
+        fo.println("*******************************************");    
+    } // end fileBanner
+    
+    //************************************************
+    // Purpose: Make an output banner string to use with message
+    //          dialogs
+    // Interface: IN: none
+    // Returns: output banner string
+    // *****************************************************
+    public static String windowBanner(){
+        // *** local variabls ***
+        
+        String bannerOut;               // output banner for windows
+        
+        // **** create banner ****
+        
+        bannerOut = "*******************************************\n";
+        bannerOut += "Name:		your name here\n";
+        bannerOut += "Class:		CS20S\n";
+        bannerOut += "Assignment:	Ax Qy\n";
+        bannerOut += "*******************************************\n\n";  
+        
+        // *** return the banner ***
+        
+        return bannerOut;           
+    } // end windowBanner
 }  // end class
